@@ -21,7 +21,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let url = URL(string: "https://lnkd.in/gqbJenY")!
+    let url = URL(string: "https://www.p2pnodeweb17034738.qa.paypal.com/")!
     webView.load(URLRequest(url: url))
     webView.allowsBackForwardNavigationGestures = true
     // Do any additional setup after loading the view, typically from a nib.
@@ -31,6 +31,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    let cred = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+    completionHandler(.useCredential, cred)
+  }
 
 }
+
+
 
